@@ -103,6 +103,18 @@ form {
   margin-top: 1rem;
 }
 
+.confirm-delete-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.confirm-delete-form button {
+  align-self: center;
+}
+
 .input-field:focus,
 textarea:focus,
 select:focus {
