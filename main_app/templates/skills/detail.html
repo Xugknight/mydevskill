@@ -5,6 +5,10 @@
   <p><strong>Level:</strong> {{ skill.get_skill_level_display }}</p>
 
   <p>
+    <a href="{% url 'edit_skill' skill.pk %}">Edit this skill</a>
+  </p>
+
+  <p>
     <a href="{% url 'delete_skill' skill.pk %}">Delete this skill</a>
   </p>
 

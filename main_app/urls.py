@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomeView, signup_view, login_view, logout_view, SkillListView, SkillDetailView, SkillCreateView, SkillDeleteView
+from .views import HomeView, signup_view, login_view, logout_view, SkillListView, SkillDetailView, SkillCreateView, SkillDeleteView, SkillUpdateView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='landing'),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('skills/create/', SkillCreateView.as_view(), name='add_skill'),
     path('skills/<int:pk>/', SkillDetailView.as_view(), name='skill_detail'),
     path('skills/<int:pk>/delete/', SkillDeleteView.as_view(), name='delete_skill'),
+    path('skills/<int:pk>/edit/', SkillUpdateView.as_view(), name='edit_skill'),
 ]

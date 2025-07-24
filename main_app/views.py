@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, TemplateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView, DeleteView, UpdateView
 from .forms import SignUpForm, LoginForm, SkillForm
 from .models import Skill
 
@@ -64,6 +64,14 @@ class SkillDeleteView(LoginRequiredMixin, DeleteView):
     model = Skill
     template_name = 'skills/confirm_delete.html'
     success_url = reverse_lazy('my_skills')
+
+    def get_queryset(self):
+        return Skill.objects.filter(user=self.request.user)
+
+class SkillUpdateView(LoginRequiredMixin, UpdateView):
+    model = Skill
+    form_class = SkillForm
+    template_name = 'skills/edit_form.html'
 
     def get_queryset(self):
         return Skill.objects.filter(user=self.request.user)

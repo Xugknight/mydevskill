@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Edit Skill</h2>
+  <form method="post" class="skill-edit-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+    <a href="{% url 'skill_detail' object.pk %}">Cancel</a>
+  </form>
+
+{% endblock %}
