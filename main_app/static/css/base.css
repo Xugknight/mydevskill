@@ -103,10 +103,38 @@ form {
   margin-top: 1rem;
 }
 
+.input-field:focus,
+textarea:focus,
+select:focus {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--accent);
+  outline: none;
+}
+
 input[type="text"],
 input[type="password"],
 textarea,
 select {
+  padding: 0.6rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--accent);
+  outline: none;
+}
+
+.input-field {
+  width: 100%;
+  max-width: 400px;
   padding: 0.6rem;
   border: 1px solid #333;
   border-radius: 4px;
@@ -148,4 +176,28 @@ thead th {
 
 tbody tr {
   border-bottom: 1px solid #333;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background-color: var(--surface) !important;
+  -webkit-text-fill-color: var(--text) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+  box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+  border-color: var(--accent) !important;
+}
+
+input:-moz-autofill,
+textarea:-moz-autofill,
+select:-moz-autofill {
+  background-color: var(--surface) !important;
+  box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+  -moz-text-fill-color: var(--text) !important;
 }
