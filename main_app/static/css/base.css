@@ -2,7 +2,7 @@
   --bg: #121212;
   --surface: #1e1e1e;
   --text: #e0e0e0;
-  --accent: #bb86fc;
+  --accent: #08b808;
   --muted: #888;
 }
 
@@ -18,7 +18,6 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Source Code Pro', monospace;
-  line-height: 1.5;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -36,19 +35,8 @@ nav {
   align-items: center;
 }
 
-nav a,
-nav span {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-nav a:hover {
-  color: var(--accent);
-}
-
 main {
-  flex: 1;               
+  flex: 1;
   width: 100%;
   max-width: 800px;
   margin: 2rem auto;
@@ -56,44 +44,71 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Vertical Center. Kind of like how it looks */
+  justify-content: center;
 }
 
 footer {
   text-align: center;
-  padding: 1rem 0;
+  padding: 1rem;
   background: var(--surface);
   color: var(--muted);
   font-size: 0.9rem;
 }
 
-h1, h2 {
-  margin-bottom: 1rem;
-}
-
 h1 {
   font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
-
 h2 {
   font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
-
 ul {
   list-style: none;
   margin-top: 1rem;
 }
-
 ul li {
   margin-bottom: 0.5rem;
 }
-
 a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+nav a,
+nav span {
+  color: var(--text);
+}
+
+nav a:hover {
   color: var(--accent);
 }
 
-a:hover {
-  text-decoration: underline;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+th,
+td {
+  padding: 0.8rem;
+}
+thead th {
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+}
+tbody tr {
+  border-bottom: 1px solid #333;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--accent);
+  width: 100%;
+  margin: 2rem 0;
 }
 
 form {
@@ -103,62 +118,18 @@ form {
   margin-top: 1rem;
 }
 
-.confirm-delete-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
+.form-centered {
   align-items: center;
 }
-
-.confirm-delete-form button {
-  align-self: center;
-}
-
-.skill-edit-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-  align-items: center;
-}
-
-.skill-edit-form p {
+.form-centered p {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.input-field:focus,
-textarea:focus,
-select:focus {
-  background: var(--surface);
-  color: var(--text);
-  border-color: var(--accent);
-  outline: none;
-}
-
-input[type="text"],
-input[type="password"],
+input,
 textarea,
 select {
-  padding: 0.6rem;
-  border: 1px solid #333;
-  border-radius: 4px;
-  background: var(--surface);
-  color: var(--text);
-  font-family: inherit;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus {
-  background: var(--surface);
-  color: var(--text);
-  border-color: var(--accent);
-  outline: none;
-}
-
-.input-field {
   width: 100%;
   max-width: 400px;
   padding: 0.6rem;
@@ -168,40 +139,13 @@ input[type="password"]:focus {
   color: var(--text);
   font-family: inherit;
 }
-
-button {
-  /* align-self: center; */
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 4px;
-  background: var(--accent);
-  color: #121212;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-
-th,
-td {
-  padding: 0.8rem;
-}
-
-thead th {
-  border-bottom: 2px solid var(--accent);
-  color: var(--accent);
-}
-
-tbody tr {
-  border-bottom: 1px solid #333;
+input:focus,
+textarea:focus,
+select:focus {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--accent);
+  outline: none;
 }
 
 input:-webkit-autofill,
@@ -219,11 +163,23 @@ select:-webkit-autofill:focus {
   box-shadow: 0 0 0px 1000px var(--surface) inset !important;
   border-color: var(--accent) !important;
 }
-
 input:-moz-autofill,
 textarea:-moz-autofill,
 select:-moz-autofill {
   background-color: var(--surface) !important;
   box-shadow: 0 0 0px 1000px var(--surface) inset !important;
   -moz-text-fill-color: var(--text) !important;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #121212;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.9;
 }

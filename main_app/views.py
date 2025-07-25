@@ -1,10 +1,11 @@
 from django.urls import reverse_lazy
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, DeleteView, UpdateView
-from .forms import SignUpForm, LoginForm, SkillForm
-from .models import Skill
+from .forms import SignUpForm, LoginForm, SkillForm, NoteForm
+from .models import Skill, Note
 
 class HomeView(TemplateView):
     template_name = 'home.html'
@@ -50,6 +51,10 @@ class SkillDetailView(LoginRequiredMixin, DetailView):
     model = Skill
     template_name = 'skills/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['note_form'] = NoteForm()
+        return context
 
 class SkillCreateView(LoginRequiredMixin, CreateView):
     model = Skill
@@ -75,3 +80,21 @@ class SkillUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_queryset(self):
         return Skill.objects.filter(user=self.request.user)
+
+@login_required
+def add_note(request, pk):
+    skill = get_object_or_404(Skill, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.skill = skill
+            note.save()
+    return redirect('skill_detail', pk=pk)
+
+@login_required
+def delete_note(request, pk, note_pk):
+    skill = get_object_or_404(Skill, pk=pk, user=request.user)
+    note = get_object_or_404(Note, pk=note_pk, skill=skill)
+    note.delete()
+    return redirect('skill_detail', pk=pk)

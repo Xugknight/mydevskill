@@ -3,7 +3,7 @@
 {% block content %}
 
   <h2>Edit Skill</h2>
-  <form method="post" class="skill-edit-form">
+  <form method="post" class="form-centered">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save Changes</button>

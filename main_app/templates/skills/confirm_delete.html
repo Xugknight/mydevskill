@@ -6,7 +6,7 @@
   <p>Are you sure you want to delete the skill:</p>
   <blockquote>{{ object.description }} ({{ object.get_skill_level_display }})</blockquote>
 
-  <form method="post" class="confirm-delete-form">
+  <form method="post" class="form-centered">
     {% csrf_token %}
     <button type="submit">Yes, delete it</button>
     <a href="{% url 'skill_detail' object.pk %}">Cancel</a>

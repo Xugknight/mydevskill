@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
   <h1>{{ skill.description }}</h1>
@@ -11,5 +12,24 @@
   <p>
     <a href="{% url 'delete_skill' skill.pk %}">Delete this skill</a>
   </p>
+
+  <hr/>
+  <h2>Notes</h2>
+  <ul>
+    {% for note in skill.notes.all %}
+      <li>
+        {{ note.content }}
+        <a href="{% url 'delete_note' skill.pk note.pk %}">🗑️</a>
+      </li>
+    {% empty %}
+      <li>No notes yet.</li>
+    {% endfor %}
+  </ul>
+
+  <form method="post" class="form-centered" action="{% url 'add_note' skill.pk %}">
+    {% csrf_token %}
+    {{ note_form.as_p }}
+    <button type="submit">Add Note</button>
+  </form>
 
 {% endblock %}
