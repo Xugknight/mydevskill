@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Skill
+from .models import Skill, Note
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='Username', max_length=64)
@@ -48,4 +48,16 @@ class SkillForm(forms.ModelForm):
                 'class': 'input-field',
                 }),
                 'skill_level': forms.Select(attrs={'class': 'input-field'}),
+        }
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={
+                'rows': 2,
+                'placeholder': 'Add a note',
+                'class': 'input-field',
+            })
         }
