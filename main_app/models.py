@@ -20,3 +20,15 @@ class Skill(models.Model):
 
     def get_absolute_url(self):
         return reverse('skill_detail', args=[self.pk])
+    
+class Note(models.Model):
+    skill = models.ForeignKey(
+        'Skill',
+        on_delete=models.CASCADE,
+        related_name='notes'
+    )
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Note ({self.content[:20]}...)'
